@@ -27,6 +27,9 @@
 #include "VideoBackends/D3D/VideoBackend.h"
 #include "VideoBackends/D3D12/VideoBackend.h"
 #endif
+#ifdef __APPLE__
+#include "VideoBackends/Metal/VideoBackend.h"
+#endif
 #include "VideoBackends/Null/VideoBackend.h"
 #ifdef HAS_OPENGL
 #include "VideoBackends/OGL/VideoBackend.h"
@@ -220,6 +223,9 @@ const std::vector<std::unique_ptr<VideoBackendBase>>& VideoBackendBase::GetAvail
 #ifdef _WIN32
     backends.push_back(std::make_unique<DX11::VideoBackend>());
     backends.push_back(std::make_unique<DX12::VideoBackend>());
+#endif
+#ifdef __APPLE__
+    backends.push_back(std::make_unique<Metal::VideoBackend>());
 #endif
 #ifdef HAS_VULKAN
     backends.push_back(std::make_unique<Vulkan::VideoBackend>());

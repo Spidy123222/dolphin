@@ -589,6 +589,9 @@ endif()
 
 if (APPLE)
   target_link_libraries(core
+  PUBLIC
+    videometal
+
   PRIVATE
     ${CORESERV_LIBRARY}
     ${IOB_LIBRARY}
