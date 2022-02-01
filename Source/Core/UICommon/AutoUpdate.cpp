@@ -80,6 +80,13 @@ void CleanupFromPreviousUpdate()
 #else
   File::Delete(reloc_updater_path);
 #endif
+
+#ifdef __APPLE__
+  // Starting with PR 10428, the updater app is now embeded in the main bundle.
+  // Clean up the old separate updater app if it exists.
+  std::string old_updater_path = File::GetExeDirectory() + DIR_SEP + UPDATER_FILENAME;
+  File::DeleteDirRecursively(old_updater_path);
+#endif
 }
 #endif
 
