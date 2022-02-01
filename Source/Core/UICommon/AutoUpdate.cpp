@@ -228,10 +228,16 @@ void AutoUpdateChecker::TriggerUpdate(const AutoUpdateChecker::NewVersionInforma
   updater_flags["log-file"] = File::GetUserPath(D_LOGS_IDX) + UPDATER_LOG_FILE;
 
   if (restart_mode == RestartMode::RESTART_AFTER_UPDATE)
+  {
     updater_flags["binary-to-restart"] = File::GetExePath();
+  }
 
   // Copy the updater so it can update itself if needed.
+#ifdef __APPLE__
+  std::string updater_path = File::GetBundleDirectory() + "/Contents/Helpers/" + UPDATER_FILENAME;
+#else
   std::string updater_path = File::GetExeDirectory() + DIR_SEP + UPDATER_FILENAME;
+#endif
   std::string reloc_updater_path = File::GetExeDirectory() + DIR_SEP + UPDATER_RELOC_FILENAME;
 
 #ifdef __APPLE__
