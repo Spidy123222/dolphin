@@ -308,6 +308,19 @@ def build(config):
     src_app1 = ARCHITECTURES[1]+"/Binaries/"
 
     recursive_merge_binaries(src_app0, src_app1, dst_app)
+
+    helpers_path = os.path.join(dst_app, "Dolphin.app", "Contents", "Helpers")
+    if not os.path.exists(helpers_path):
+        os.makedirs(helpers_path)
+    
+    # Remove the embedded Updater if it exists
+    embedded_updater_path = os.path.join(helpers_path, "Dolphin Updater.app")
+    if os.path.exists(embedded_updater_path):
+        shutil.rmtree(embedded_updater_path)
+
+    # Embed the Updater app inside the main Dolphin app bundle
+    shutil.copytree(os.path.join(dst_app, "Dolphin Updater.app"), embedded_updater_path)
+
     for path in glob.glob(dst_app+"/*"):
         if os.path.isdir(path) and os.path.splitext(path)[1] != ".app":
             continue
