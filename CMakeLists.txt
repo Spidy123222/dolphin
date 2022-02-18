@@ -90,6 +90,7 @@ if(CMAKE_SYSTEM_NAME STREQUAL "Linux")
 
   if(NOT ANDROID)
     option(ENABLE_EVDEV "Enables the evdev controller backend" ON)
+    option(STEAM_RUNTIME "Makes a build compatible with the Steam Runtime" OFF)
   endif()
 endif()
 
