@@ -359,7 +359,7 @@ if(ENABLE_LTO)
   endif()
 endif()
 
-if(UNIX AND LINUX_LOCAL_DEV)
+if(UNIX AND (LINUX_LOCAL_DEV OR STEAM_RUNTIME))
   add_definitions(-DLINUX_LOCAL_DEV)
 endif()
 
