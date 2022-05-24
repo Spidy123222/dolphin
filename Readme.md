@@ -11,7 +11,7 @@ Please read the [FAQ](https://dolphin-emu.org/docs/faq/) before using Dolphin.
 ## Building for iOS/tvOS
 
 You'll need:
-
+ 
 * A modern Mac running Xcode 11 or later
 * Familiarity with building and running with Xcode
 * [Homebrew](https://brew.sh)
